@@ -1,0 +1,18 @@
+{
+  "verdict": {
+    "decision": "Hold",
+    "n_errors": 0,
+    "n_warn_images": 60,
+    "n_images": 205,
+    "warn_ratio": 0.2927,
+    "reasons": [
+      "60/205 ảnh còn cảnh báo (29.27%) >= ngưỡng 10.00%"
+    ]
+  },
+  "reviewed": 80,
+  "budget": 80,
+  "seconds": 10.5,
+  "exported": "C:\\Users\\Asus\\Downloads\\K5-L2b-DAY09-2A202604068-AutoQCPipeline\\submission\\export\\clean_v1",
+  "config_sha1": "b44ba77a8a036c1cad78e0c28ed1db6ba7404125",
+  "review_sim_sha1": "7988ca22827f780a7043a2300490e679a1697154"
+}

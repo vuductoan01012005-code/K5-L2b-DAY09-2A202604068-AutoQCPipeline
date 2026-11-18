@@ -1,0 +1,202 @@
+# Danh sách lỗi — SAU người duyệt (v3)
+ảnh đã quét: 205
+
+label_format -> 9 dòng
+missing_labels -> 10 dòng
+second_opinion -> 165 dòng
+
+[WARN ] BOX_HUGE             img_0018.txt:1  box chiếm 0.970 diện tích ảnh
+[WARN ] BOX_HUGE             img_0128.txt:1  box chiếm 0.988 diện tích ảnh
+[WARN ] BOX_HUGE             img_0196.txt:1  box chiếm 0.984 diện tích ảnh
+[WARN ] BOX_TINY             img_0026.txt:6  cạnh ngắn 11.4px < 12px
+[WARN ] BOX_TINY             img_0069.txt:2  cạnh ngắn 11.2px < 12px
+[WARN ] BOX_TINY             img_0161.txt:2  cạnh ngắn 10.3px < 12px
+[WARN ] BOX_TINY             img_0161.txt:3  cạnh ngắn 11.4px < 12px
+[WARN ] BOX_TINY             img_0161.txt:4  cạnh ngắn 11.9px < 12px
+[WARN ] BOX_TINY             img_0183.txt:11  cạnh ngắn 11.8px < 12px
+[WARN ] EMPTY_LABEL          img_0013  file nhãn rỗng: ảnh nền hay thiếu nhãn?
+[WARN ] EMPTY_LABEL          img_0057  file nhãn rỗng: ảnh nền hay thiếu nhãn?
+[WARN ] EMPTY_LABEL          img_0097  file nhãn rỗng: ảnh nền hay thiếu nhãn?
+[WARN ] EMPTY_LABEL          img_0103  file nhãn rỗng: ảnh nền hay thiếu nhãn?
+[WARN ] EMPTY_LABEL          img_0129  file nhãn rỗng: ảnh nền hay thiếu nhãn?
+[WARN ] EMPTY_LABEL          img_0147  file nhãn rỗng: ảnh nền hay thiếu nhãn?
+[WARN ] EMPTY_LABEL          img_0157  file nhãn rỗng: ảnh nền hay thiếu nhãn?
+[WARN ] EMPTY_LABEL          img_0178  file nhãn rỗng: ảnh nền hay thiếu nhãn?
+[WARN ] EMPTY_LABEL          img_0184  file nhãn rỗng: ảnh nền hay thiếu nhãn?
+[WARN ] EMPTY_LABEL          img_0192  file nhãn rỗng: ảnh nền hay thiếu nhãn?
+[WARN ] POSSIBLE_FALSE_POS   img_0014.txt:2  box nhãn dòng 2 không khớp dự đoán nào (IoU 0.145)
+[WARN ] POSSIBLE_FALSE_POS   img_0022.txt:2  box nhãn dòng 2 không khớp dự đoán nào (IoU 0.000)
+[WARN ] POSSIBLE_FALSE_POS   img_0035.txt:2  box nhãn dòng 2 không khớp dự đoán nào (IoU 0.000)
+[WARN ] POSSIBLE_FALSE_POS   img_0068.txt:8  box nhãn dòng 8 không khớp dự đoán nào (IoU 0.199)
+[WARN ] POSSIBLE_FALSE_POS   img_0069.txt:2  box nhãn dòng 2 không khớp dự đoán nào (IoU 0.000)
+[WARN ] POSSIBLE_FALSE_POS   img_0075.txt:6  box nhãn dòng 6 không khớp dự đoán nào (IoU 0.107)
+[WARN ] POSSIBLE_FALSE_POS   img_0091.txt:10  box nhãn dòng 10 không khớp dự đoán nào (IoU 0.124)
+[WARN ] POSSIBLE_FALSE_POS   img_0095.txt:6  box nhãn dòng 6 không khớp dự đoán nào (IoU 0.000)
+[WARN ] POSSIBLE_FALSE_POS   img_0111.txt:2  box nhãn dòng 2 không khớp dự đoán nào (IoU 0.000)
+[WARN ] POSSIBLE_FALSE_POS   img_0114.txt:6  box nhãn dòng 6 không khớp dự đoán nào (IoU 0.116)
+[WARN ] POSSIBLE_FALSE_POS   img_0124.txt:8  box nhãn dòng 8 không khớp dự đoán nào (IoU 0.036)
+[WARN ] POSSIBLE_FALSE_POS   img_0131.txt:11  box nhãn dòng 11 không khớp dự đoán nào (IoU 0.000)
+[WARN ] POSSIBLE_FALSE_POS   img_0133.txt:6  box nhãn dòng 6 không khớp dự đoán nào (IoU 0.013)
+[WARN ] POSSIBLE_FALSE_POS   img_0134.txt:5  box nhãn dòng 5 không khớp dự đoán nào (IoU 0.044)
+[WARN ] POSSIBLE_FALSE_POS   img_0142.txt:6  box nhãn dòng 6 không khớp dự đoán nào (IoU 0.049)
+[WARN ] POSSIBLE_FALSE_POS   img_0149.txt:3  box nhãn dòng 3 không khớp dự đoán nào (IoU 0.000)
+[WARN ] POSSIBLE_FALSE_POS   img_0150.txt:3  box nhãn dòng 3 không khớp dự đoán nào (IoU 0.232)
+[WARN ] POSSIBLE_FALSE_POS   img_0155.txt:2  box nhãn dòng 2 không khớp dự đoán nào (IoU 0.000)
+[WARN ] POSSIBLE_FALSE_POS   img_0155.txt:3  box nhãn dòng 3 không khớp dự đoán nào (IoU 0.000)
+[WARN ] POSSIBLE_FALSE_POS   img_0177.txt:2  box nhãn dòng 2 không khớp dự đoán nào (IoU 0.000)
+[WARN ] POSSIBLE_FALSE_POS   img_0189.txt:4  box nhãn dòng 4 không khớp dự đoán nào (IoU 0.009)
+[WARN ] POSSIBLE_FALSE_POS   img_0191.txt:1  box nhãn dòng 1 không khớp dự đoán nào (IoU 0.256)
+[WARN ] POSSIBLE_FALSE_POS   img_0193.txt:6  box nhãn dòng 6 không khớp dự đoán nào (IoU 0.017)
+[WARN ] POSSIBLE_FALSE_POS   img_0206.txt:1  box nhãn dòng 1 không khớp dự đoán nào (IoU 0.108)
+[WARN ] POSSIBLE_FALSE_POS   img_0212.txt:4  box nhãn dòng 4 không khớp dự đoán nào (IoU 0.150)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0018  box nhãn lớp 1 lỏng (IoU 0.447)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0019  box nhãn lớp 1 lỏng (IoU 0.468)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0020  box nhãn lớp 1 lỏng (IoU 0.399)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0021  box nhãn lớp 1 lỏng (IoU 0.486)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0023  box nhãn lớp 1 lỏng (IoU 0.401)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0030  box nhãn lớp 1 lỏng (IoU 0.349)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0032  box nhãn lớp 1 lỏng (IoU 0.335)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0036  box nhãn lớp 1 lỏng (IoU 0.427)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0038  box nhãn lớp 1 lỏng (IoU 0.397)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0046  box nhãn lớp 1 lỏng (IoU 0.382)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0054  box nhãn lớp 0 lỏng (IoU 0.379)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0058  box nhãn lớp 1 lỏng (IoU 0.453)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0058  box nhãn lớp 1 lỏng (IoU 0.380)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0058  box nhãn lớp 1 lỏng (IoU 0.440)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0063  box nhãn lớp 1 lỏng (IoU 0.415)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0068  box nhãn lớp 1 lỏng (IoU 0.377)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0069  box nhãn lớp 1 lỏng (IoU 0.393)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0075  box nhãn lớp 1 lỏng (IoU 0.395)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0077  box nhãn lớp 1 lỏng (IoU 0.402)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0081  box nhãn lớp 1 lỏng (IoU 0.480)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0082  box nhãn lớp 1 lỏng (IoU 0.483)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0090  box nhãn lớp 1 lỏng (IoU 0.463)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0091  box nhãn lớp 1 lỏng (IoU 0.482)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0099  box nhãn lớp 1 lỏng (IoU 0.302)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0099  box nhãn lớp 1 lỏng (IoU 0.374)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0119  box nhãn lớp 1 lỏng (IoU 0.304)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0119  box nhãn lớp 1 lỏng (IoU 0.380)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0126  box nhãn lớp 1 lỏng (IoU 0.373)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0175  box nhãn lớp 1 lỏng (IoU 0.422)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0175  box nhãn lớp 1 lỏng (IoU 0.430)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0179  box nhãn lớp 1 lỏng (IoU 0.366)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0188  box nhãn lớp 1 lỏng (IoU 0.405)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0188  box nhãn lớp 1 lỏng (IoU 0.356)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0212  box nhãn lớp 1 lỏng (IoU 0.329)
+[WARN ] POSSIBLE_LOOSE_BOX   img_0223  box nhãn lớp 1 lỏng (IoU 0.458)
+[WARN ] POSSIBLE_MISSING     img_0001  model thấy vật lớp 1 (conf 0.42) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0005  model thấy vật lớp 1 (conf 0.30) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0012  model thấy vật lớp 1 (conf 0.67) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0021  model thấy vật lớp 1 (conf 0.34) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0027  model thấy vật lớp 2 (conf 0.57) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0028  model thấy vật lớp 1 (conf 0.94) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0030  model thấy vật lớp 1 (conf 0.60) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0030  model thấy vật lớp 1 (conf 0.36) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0030  model thấy vật lớp 1 (conf 0.32) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0030  model thấy vật lớp 1 (conf 0.26) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0032  model thấy vật lớp 1 (conf 0.40) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0032  model thấy vật lớp 1 (conf 0.25) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0045  model thấy vật lớp 1 (conf 0.50) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0047  model thấy vật lớp 1 (conf 0.72) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0051  model thấy vật lớp 1 (conf 0.42) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0057  model thấy vật lớp 1 (conf 0.89) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0062  model thấy vật lớp 1 (conf 0.64) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0067  model thấy vật lớp 1 (conf 0.37) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0068  model thấy vật lớp 1 (conf 0.33) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0073  model thấy vật lớp 3 (conf 0.41) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0084  model thấy vật lớp 1 (conf 0.25) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0086  model thấy vật lớp 1 (conf 0.88) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0087  model thấy vật lớp 1 (conf 0.28) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0093  model thấy vật lớp 1 (conf 0.71) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0094  model thấy vật lớp 1 (conf 0.49) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0094  model thấy vật lớp 1 (conf 0.41) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0095  model thấy vật lớp 1 (conf 0.40) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0099  model thấy vật lớp 1 (conf 0.56) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0099  model thấy vật lớp 1 (conf 0.26) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0100  model thấy vật lớp 1 (conf 0.33) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0103  model thấy vật lớp 1 (conf 0.92) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0106  model thấy vật lớp 0 (conf 0.27) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0108  model thấy vật lớp 2 (conf 0.56) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0116  model thấy vật lớp 1 (conf 0.31) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0119  model thấy vật lớp 1 (conf 0.52) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0121  model thấy vật lớp 1 (conf 0.76) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0124  model thấy vật lớp 2 (conf 0.48) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0124  model thấy vật lớp 0 (conf 0.31) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0124  model thấy vật lớp 0 (conf 0.26) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0125  model thấy vật lớp 1 (conf 0.38) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0125  model thấy vật lớp 1 (conf 0.35) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0126  model thấy vật lớp 1 (conf 0.72) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0127  model thấy vật lớp 1 (conf 0.68) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0127  model thấy vật lớp 1 (conf 0.63) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0127  model thấy vật lớp 1 (conf 0.51) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0127  model thấy vật lớp 1 (conf 0.49) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0127  model thấy vật lớp 1 (conf 0.46) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0127  model thấy vật lớp 1 (conf 0.34) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0127  model thấy vật lớp 1 (conf 0.33) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0127  model thấy vật lớp 1 (conf 0.32) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0131  model thấy vật lớp 1 (conf 0.39) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0133  model thấy vật lớp 3 (conf 0.64) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0133  model thấy vật lớp 0 (conf 0.40) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0134  model thấy vật lớp 1 (conf 0.55) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0135  model thấy vật lớp 1 (conf 0.73) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0135  model thấy vật lớp 1 (conf 0.49) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0137  model thấy vật lớp 1 (conf 0.32) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0138  model thấy vật lớp 1 (conf 0.32) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0145  model thấy vật lớp 1 (conf 0.94) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0147  model thấy vật lớp 1 (conf 0.78) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0151  model thấy vật lớp 1 (conf 0.35) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0157  model thấy vật lớp 1 (conf 0.90) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0159  model thấy vật lớp 1 (conf 0.93) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0160  model thấy vật lớp 2 (conf 0.78) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0160  model thấy vật lớp 2 (conf 0.39) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0160  model thấy vật lớp 2 (conf 0.38) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0160  model thấy vật lớp 2 (conf 0.33) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0160  model thấy vật lớp 2 (conf 0.33) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0160  model thấy vật lớp 2 (conf 0.31) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0160  model thấy vật lớp 3 (conf 0.27) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0160  model thấy vật lớp 2 (conf 0.25) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0163  model thấy vật lớp 2 (conf 0.32) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0164  model thấy vật lớp 1 (conf 0.78) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0165  model thấy vật lớp 1 (conf 0.26) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0178  model thấy vật lớp 1 (conf 0.93) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0180  model thấy vật lớp 2 (conf 0.29) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0182  model thấy vật lớp 1 (conf 0.26) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0183  model thấy vật lớp 1 (conf 0.81) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0184  model thấy vật lớp 1 (conf 0.79) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0187  model thấy vật lớp 1 (conf 0.29) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0195  model thấy vật lớp 2 (conf 0.50) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0195  model thấy vật lớp 0 (conf 0.45) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0195  model thấy vật lớp 0 (conf 0.37) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0199  model thấy vật lớp 1 (conf 0.74) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0205  model thấy vật lớp 3 (conf 0.39) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0210  model thấy vật lớp 0 (conf 0.31) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0215  model thấy vật lớp 1 (conf 0.57) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0218  model thấy vật lớp 1 (conf 0.84) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0219  model thấy vật lớp 1 (conf 0.35) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0220  model thấy vật lớp 1 (conf 0.62) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0220  model thấy vật lớp 0 (conf 0.26) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0224  model thấy vật lớp 1 (conf 0.42) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0224  model thấy vật lớp 1 (conf 0.27) mà nhãn không có box
+[WARN ] POSSIBLE_MISSING     img_0224  model thấy vật lớp 1 (conf 0.27) mà nhãn không có box
+[WARN ] POSSIBLE_WRONG_CLASS img_0024  model lớp 2 nhưng nhãn lớp khác (IoU 0.933)
+[WARN ] POSSIBLE_WRONG_CLASS img_0037  model lớp 0 nhưng nhãn lớp khác (IoU 0.928)
+[WARN ] POSSIBLE_WRONG_CLASS img_0078  model lớp 0 nhưng nhãn lớp khác (IoU 0.919)
+[WARN ] POSSIBLE_WRONG_CLASS img_0083  model lớp 0 nhưng nhãn lớp khác (IoU 0.974)
+[WARN ] POSSIBLE_WRONG_CLASS img_0092  model lớp 2 nhưng nhãn lớp khác (IoU 0.976)
+[WARN ] POSSIBLE_WRONG_CLASS img_0101  model lớp 0 nhưng nhãn lớp khác (IoU 0.583)
+[WARN ] POSSIBLE_WRONG_CLASS img_0160  model lớp 3 nhưng nhãn lớp khác (IoU 0.724)
+[WARN ] POSSIBLE_WRONG_CLASS img_0180  model lớp 3 nhưng nhãn lớp khác (IoU 0.889)
+[WARN ] POSSIBLE_WRONG_CLASS img_0195  model lớp 0 nhưng nhãn lớp khác (IoU 0.763)
+[WARN ] POSSIBLE_WRONG_CLASS img_0220  model lớp 0 nhưng nhãn lớp khác (IoU 0.911)
+[WARN ] POSSIBLE_WRONG_CLASS img_0220  model lớp 0 nhưng nhãn lớp khác (IoU 0.880)
+
+## Tổng hợp theo mã
+warn  BOX_HUGE               3
+warn  BOX_TINY               6
+warn  EMPTY_LABEL            10
+warn  POSSIBLE_FALSE_POS     25
+warn  POSSIBLE_LOOSE_BOX     35
+warn  POSSIBLE_MISSING       94
+warn  POSSIBLE_WRONG_CLASS   11
+
+Kết luận: HOLD — 60/205 ảnh còn cảnh báo (29.27%) >= ngưỡng 10.00%
