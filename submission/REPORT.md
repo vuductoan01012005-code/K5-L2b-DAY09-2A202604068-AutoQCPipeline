@@ -4,26 +4,39 @@
 
 ## 1. Kết luận trước
 
-TODO(học viên): pipeline kết luận **Release / Hold / Rework**? Bao nhiêu ảnh vào, bao nhiêu ảnh ra dataset? Lý do chính (1–3 câu).
+Pipeline kết luận **Hold** (chưa Release, chưa Rework). Vào `224` ảnh thô (`01_intake.txt`: quét `224`, loại `19` = `5 images` + `14 duplicates`), ra `205` ảnh vào `submission/export/clean_v1` (`08_summary.json`: `decision=Hold`, `n_images=205`, `n_errors=0`, `n_warn_images=60`, `warn_ratio=0.2927`, `exported=submission/export/clean_v1`). Lý do: đã hết lỗi bắt buộc sau sửa tự động + duyệt 80/80 ảnh theo ngân sách (`07_error_list_v3` không còn ERROR), nhưng tỉ lệ ảnh còn cảnh báo `60/205=29.27%` vẫn vượt ngưỡng gate `warn_ratio_hold=0.10`, nên đây là bản nháp chờ xử lý cảnh báo, không phải bản phát hành.
 
 ## 2. Lỗi và phân việc
 
-Lấy từ `02_error_list_v1` (gom theo mã lỗi). Cột "ai sửa": **máy** (autofix) hay **người** (hàng đợi); chỉ ghi những mã có mặt trong lô của bạn.
+Gom từ `02_error_list_v1` (ảnh đã quét `205` sau intake; `02_error_list_v1.txt` theo module: `second_opinion 248`, `label_format 37`, `missing_labels 18`, `duplicates 14`, `images 5`, `stats 4`, `class_names 2` — tổng `328` dòng; bảng dưới theo mã lỗi, chỉ ghi mã có mặt trong lô).
 
-| Mã lỗi         | Số ảnh/dòng | Ai sửa (máy/người) | Vì sao |
-| -------------- | ----------: | ------------------ | ------ |
-| TODO(học viên) |             |                    |        |
+| Mã lỗi     |                        Số ảnh/dòng | Ai sửa (máy/người)                       | Vì sao                                        |
+| ---------- | ---------------------------------: | ---------------------------------------- | --------------------------------------------- |
+| `BAD_SIZE` | 3 (`img_0107, img_0113, img_0122`) | Máy — loại ở Bước 1, không chép vào `ds` | Cạnh ngắn `180–226px < 250px` (`min_side_px`) |
 
-TODO(học viên): vì sao `05_review_queue.csv` xếp ảnh đầu hàng như vậy? Với ngân sách 80 ảnh, người xem được bao nhiêu lỗi ngữ nghĩa?
+**Bước 1 (intake, `01_intake.txt`):** ảnh hỏng/quá nhỏ/trùng/rò rỉ bị loại **trước** mọi bước khác nên không tốn công QC: `CORRUPT_IMAGE 2` (`img_0010, img_0136`), `BAD_SIZE 3`, `DUP_IMAGE_EXACT 8`, `DUP_IMAGE_NEAR 2`, `LEAK_TEST 4` (`img_0049, img_0167, img_0174, img_0221` trùng test/val) = `19` ảnh.
+
+**ERROR còn lại sau intake → máy (`03_fixes.csv`, `04_error_list_v2.txt`):** `BAD_FORMAT 3`, `BAD_CLASS_ID 6`, `BOX_ZERO 4`, `DUP_BOX 7` → `drop_line`; `BOX_OUT_OF_IMAGE 8` → `clip_box`; `BAD_CLASS_NAME 2` (`Person→person`, `Bus→bus`) → `rename_classes`; `MISSING_LABEL_FILE 6` (`img_0031, img_0053, img_0126, img_0135, img_0170, img_0219`) → `needs_label` (máy không bịa nhãn, chuyển người gán — việc này giải thích vì sao REF 6 lỗi này còn lại tới vòng 2 vẫn là ERROR).
+
+**WARN → người (hàng đợi `05_review_queue.csv`):** `POSSIBLE_MISSING 152`, `POSSIBLE_LOOSE_BOX 45` → **người**; `POSSIBLE_FALSE_POS 29`, `POSSIBLE_WRONG_CLASS 22` → **người**; `EMPTY_LABEL 12`, `BOX_TINY 6`, `BOX_HUGE 3`, `CLASS_RARE 4` (stats) → **người**. Các mã `POSSIBLE_*` là ngữ nghĩa nên chỉ người xác nhận; `EMPTY_LABEL` hỏi "ảnh nền hay thiếu nhãn?" nên cũng phải người.
+
+**Vì sao hàng đợi xếp như vậy (`05_review_queue.csv`):** `pipeline/steps/review_queue.py`: điểm ảnh = Σ `review.weights` theo mã (vd. `POSSIBLE_WRONG_CLASS 3`, `POSSIBLE_MISSING/FALSE_POS 2`, `POSSIBLE_LOOSE_BOX 1.5`, `NEEDS_LABEL 10`, `FIXED_DROP_LINE 2`, `FIXED_CLIP_BOX 1`, `default 1`) × `(1 + conf)` nếu có `conf`, cộng thêm điểm khi máy đã sửa (`drop_line/clip_box/needs_label`) và `FIXED_*`/`NEEDS_LABEL`; xếp giảm dần theo điểm rồi theo tên ảnh. Với ngân sách `80` ảnh (`review.budget_images`), người xem được `80/145` ảnh (55,2%) ở vòng 2: top là `img_0160` (`35.692`, `POSSIBLE_MISSING;POSSIBLE_WRONG_CLASS`), `img_0127` (`22.753`), `img_0020` (`17.449`), `img_0058` (`16.468`), `img_0124` (`15.301`)… nghĩa là người xem trước hết các lỗi ngữ nghĩa chắc (cao conf + trọng số cao) và các ảnh máy vừa động vào; sau duyệt `80/80`, vòng 3 còn `60/205` ảnh cảnh báo (`07_error_list_v3`: `POSSIBLE_MISSING 94`, `POSSIBLE_LOOSE_BOX 35`, `POSSIBLE_FALSE_POS 25`, `POSSIBLE_WRONG_CLASS 11`, `BOX_*`/`EMPTY_LABEL` còn lại), vượt gate `10%` → Hold.
 
 ## 3. Calibration (2 ngưỡng)
 
-| Tham số                 | Khởi đầu | Đã chọn        | Precision / Recall (trước → sau) | Lý do (đánh đổi) |
-| ----------------------- | -------- | -------------- | -------------------------------- | ---------------- |
-| `duplicates.phash_dist` | 2        | TODO(học viên) |                                  |                  |
-| `second_opinion.conf`   | 0.25     | TODO(học viên) |                                  |                  |
+| Tham số                 | Khởi đầu | Đã chọn | Precision / Recall (trước → sau)                                                                                                                                        | Lý do (đánh đổi)                                                                                                                                                                                                        |
+| ----------------------- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `duplicates.phash_dist` | 2        | **16**  | `DUP_IMAGE_NEAR`: 1.00 / 0.50 → 1.00 / 0.83                                                                                                                             | Ưu tiên precision vì cờ sai = xoá nhầm ảnh tốt; sweep calib giữ precision 1.00 mọi điểm nên tăng recall không tốn FP trên calib (4→16: 0.67→0.83)                                                                       |
+| `second_opinion.conf`   | 0.25     | **0.5** | `WRONG_CLASS`: 0.56/0.83 → 0.56/0.83; `MISSING`: 0.50/1.00 → 0.57/1.00; `LOOSE_BOX`: 0.29/0.40 → 0.20/0.20; `FALSE_POS`: 0.31/1.00 → không đổi (dùng `fp_conf` cố định) | Tăng precision của `MISSING` mà không mất recall hai mã chính; 0.5 là điểm knee — lên 0.7 mới bắt đầu rớt `MISSING` recall (0.88), xuống 0.1 thì hàng đợi nổ (mô phỏng trên ds sau autofix: queue 149, 399 warn issues) |
 
-TODO(học viên): **một chỗ calibration có thể đánh lừa bạn**, kèm bằng chứng từ dữ liệu của bạn (vd. mở xem vài cặp ảnh bị cho là trùng; số ảnh bị loại ở bước 1 có hợp lý không?).
+**Cái "chỗ calib có thể đánh lừa" (trọng điểm):**
+
+1. **Calib chỉ 39 ảnh, mỗi ô chỉ 3–8 lỗi chèn** nên P/R nhảy từng bước 17–33% cho mỗi lỗi; `phash_dist=16` tăng recall thêm đúng **1 lỗi** (5/6 thay vì 4/6) trên calib, nhưng trên `data/raw` (tự chạy `checks.duplicates` theo từng giá trị) 16 loại thêm **9 ảnh** so với 2 (31 thay vì 19), và mức phash ở raw cho thấy các cặp gần-threshold rất dày: khoảng cách phash tới ảnh giữ trước đó — d=6: 1 cặp, d=10: 1, d=16: 3, d=18: ~20, d=20: ~80, d=17–24: 189 ảnh. Nghĩa là ngưỡng 16 nằm ngay mép "sườn dốc" của raw: chỉ cần dịch ngưỡng một chút là số ảnh bị loại nhảy vọt (ở 20: 137 ảnh bị loại, chủ yếu LEAK_TEST). Calib không đo được dải nguy hiểm này vì chỉ có 6 ảnh NEAR cố ý chèn (mức biến đổi 0–4, dễ) — lỗi thật trong raw biến đổi mạnh hơn.
+2. **Điểm lạ của sweep:** ở `phash_dist=20`, recall `DUP_IMAGE_EXACT` rơi xuống 0.33 (1/3) và NEAR xuống 0.50 — thấp hơn ở 16. Nguyên nhân là cơ chế trong `duplicates.py`: ảnh bị báo (LEAK/EXACT/NEAR) **không** vào tập `seen`, ảnh sau chỉ so với ảnh đã giữ; ngưỡng quá lớn gỡ chuỗi giống-nhau-xây-dựng-nhau. Người chỉ đọc bảng F1 sẽ tưởng "16 là F1 cao nhất nên chọn", mà không hiểu vì sao đường cong không đơn điệu.
+3. **Calib không có ca `LEAK_TEST`** (MANIFEST chỉ có EXACT/NEAR + lỗi nhãn); raw có 4 ca rò rỉ rớt vào khoảng cách phash khác — ngưỡng tối ưu cho EXACT/NEAR trên calib không suy ra được độ rò rỉ trên raw.
+4. **Calib dựng từ nhãn người (sạch), raw từ nhãn model** — `WRONG_CLASS` trên calib chủ yếu person→car/truck→bus, trong khi raw nghiêng car/truck/bus (theo `07_error_list_v3` toàn `model lớp 0/2 nhưng nhãn lớp khác`); recall `WRONG_CLASS` 0.83 trên calib không đảm bảo recall tương tự trên raw. Ngoài ra `POSSIBLE_LOOSE_BOX` trên calib precision chỉ 0.20–0.29 (FP do nhãn người/box lệch tự nhiên) — đây là FP "đúng nghĩa" (người kiểm mở xem uổng công), nhưng không qua `conf` nên hạ `conf` không cứu được nó.
+
+**Vẫn là điểm mù đã biết sau calibrate:** `second_opinion.conf` chỉ lọc dự đoán cho `MISSING/LOOSE/WRONG_CLASS`; `FALSE_POS` đi theo `fp_conf=0.1` cố định nên P duy trì 0.31 trên mọi điểm — 11 FP trên calib không có cách giảm trong phạm vi 2 ngưỡng được phép chỉnh; nó vẫn là gánh nặng chính của hàng đợi (24 dòng `POSSIBLE_FALSE_POS` ở v2).
 
 ## 4. Cửa chặn và điều pipeline KHÔNG bắt được
 
@@ -45,9 +58,19 @@ Từ 3 lỗi trên có ≥2 điểm mù có bằng chứng: (i) **Lỗi ngữ ng
 
 ## 5. Train: raw vs clean (tùy chọn, chấm riêng)
 
-Chưa train: ghi "chưa chạy" và lý do, rồi bỏ qua phần còn lại của mục này. Nếu đã train: dán bảng từ `submission/results/comparison.md` (model, epoch, seed, số ảnh train mỗi biến thể).
+Đã train: `submission/results/{raw,clean}_seed{0,1}.json` (yolo26n, 20 epoch, 2 seed, `comparison.json/.md/.png` sinh bởi `scripts/train_compare.py`/`summarize_results.py` — không sửa tay; `clean` dùng đúng `submission/export/clean_v1/manifest.json` với `n_images=205` từ bản chạy ở trên, `raw` dùng `data/raw` `224` ảnh).
 
-TODO(học viên): chênh mAP50 (clean − raw) so với **độ lệch chuẩn giữa các seed**; kết luận **trung thực** (nằm trong nhiễu thì nói là chưa kết luận được); ≥ 2 giả thuyết giải thích (ảnh trùng/rò rỉ test trong `raw`, nhãn máy còn lại trong `clean`, test chỉ 100 ảnh…) và cách kiểm.
+| biến thể | #ảnh train | mAP50 (TB ± SD)                | mAP50-95      | P             | R             |
+| -------- | ---------- | ------------------------------ | ------------- | ------------- | ------------- |
+| raw      | 224        | 0.726 ± 0.000 (0.7256, 0.7259) | 0.512 ± 0.004 | 0.764 ± 0.061 | 0.649 ± 0.028 |
+| clean    | 205        | 0.711 ± 0.021 (0.6958, 0.7256) | 0.501 ± 0.009 | 0.753 ± 0.054 | 0.620 ± 0.016 |
+
+**Chênh mAP50 (clean − raw) = −0.015**, trong khi độ lệch chuẩn giữa 2 seed của `clean` là `0.021`, tức |chênh| < 1 SD của riêng clean; raw 2 seed gần như trùng nhau (SD 0.0002) còn clean hai seed cách nhau tới `0.030` (0.6958↔0.7256 — bằng đúng seed0 của raw). Nói cách khác, thứ tự raw>clean chỉ vững ở **trung bình**, không vững ở **seed**: seed1 của clean (0.7256) bằng seed0 của raw (0.7256) và gần như bằng seed1 của raw (0.7259). Kết luận trung thực: **chưa kết luận được "clean tốt hơn raw"**; chênh −0.015 nằm hoàn toàn trong nhiễu giữa seed trên lô 205 ảnh.
+
+**Ít nhất hai giả thuyết giải thích (và cách kiểm):**
+
+1. **`clean` chứa nhãn máy còn sót lại chứ không phải nhãn sạch.** Pipeline chỉ sửa được lỗi cú pháp (drop/clip) và mọi cảnh báo ngữ nghĩa còn lại (`94 POSSIBLE_MISSING + 35 POSSIBLE_LOOSE_BOX + 25 FALSE_POS + 11 WRONG_CLASS` ở v3) chưa được người sửa hết vì Hold — model học đúng các lệch của checker, nên không có kỳ vọng clean phải vượt raw về mAP. Kiểm: train lại trên các ảnh đã được người duyệt (80 ảnh) + mẫu 80 ảnh còn lại, hoặc so AP riêng các lớp dễ bị `FALSE_POS` (so `ap50_per_class`: `truck` raw 0.6574/0.6395 → clean 0.5452/0.6292, rớt nhiều nhất) với tỉ lệ warning của lớp đó.
+2. **Test chỉ 100 ảnh, chênh lệch −0.015 không vượt được khoảng tin cậy theo mẫu test.** Với tập kiểm 100 ảnh, 1 ảnh đổi kết quả có thể nhấp nhô mAP khoảng ~0.01–0.02 — cùng cỡ chênh quan sát được. Kiểm: đánh giá lại trên `data/gold_val` thường xuyên hơn (nếu có) hoặc bootstrap lại tập test, và so `map50_95` (kênh khác: −0.011, cùng dấu, cùng cỡ nhiễu) với các seed để xem dấu chênh có ổn định theo metric khác không; nếu kết quả vẫn trong nhiễu, kết luận là "chưa đủ bằng chứng" (theo đúng RULES: không được kết luận "clean tốt hơn raw" khi số liệu không ủng hộ).
 
 ## 6. Quyết định và ghi chú AI
 

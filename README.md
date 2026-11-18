@@ -2,7 +2,7 @@
   <img src="docs/assets/hero.png" alt="Day 09 Lab: pipeline kiểm nhãn tự động" width="100%">
 </p>
 
-# Day 09 Lab — Pipeline kiểm nhãn tự động
+# Day 09 Lab — Vũ Đức Toàn: 2A202604068 - Vũ Đức Toàn
 
 <p align="center">
   <img alt="cá nhân" src="https://img.shields.io/badge/lab-cá%20nhân-0b1f3a">
@@ -48,6 +48,7 @@ Bạn sẽ **tự viết 4 module** (`label_format`, `second_opinion`, `autofix`
 <summary><b>Vì sao cổng Hold ở 10% và ngân sách duyệt chỉ 80 ảnh?</b></summary>
 
 Slide ví dụ ngưỡng 2% ("dự án đặt trong guideline"). Ở lab, hàng đợi người duyệt có 80 ảnh trên ~200 ảnh nên chọn 10%. Ảnh chưa duyệt vẫn tính vào tỉ lệ cảnh báo: ngân sách không đủ thì **không** được Release. Xem [GUIDE.md](GUIDE.md).
+
 </details>
 
 <details>
@@ -60,31 +61,31 @@ Slide ví dụ ngưỡng 2% ("dự án đặt trong guideline"). Ở lab, hàng 
 
 ## Bạn sẽ có gì sau bài này
 
-| Sản phẩm | Ở đâu |
-|---|---|
-| Bộ kiểm tự động (4 module bạn viết + 5 check mẫu), unit test xanh | `pipeline/`, `tests/` |
-| **Danh sách lỗi** trước / sau sửa / sau người duyệt, log các thay đổi, hàng đợi người duyệt | `submission/reports/` |
-| **Kết quả calibration** (2 ngưỡng): sweep precision/recall | `submission/calibration/` |
-| Dataset đã xuất + `manifest.json` (truy vết) | `submission/export/clean_v1/` |
-| *(tùy chọn)* **So sánh train**: raw vs clean (2 seed) | `submission/results/` |
-| **Một báo cáo duy nhất**: quyết định Release/Hold/Rework, phân việc, calibration, kết luận train | `submission/REPORT.md` |
+| Sản phẩm                                                                                         | Ở đâu                         |
+| ------------------------------------------------------------------------------------------------ | ----------------------------- |
+| Bộ kiểm tự động (4 module bạn viết + 5 check mẫu), unit test xanh                                | `pipeline/`, `tests/`         |
+| **Danh sách lỗi** trước / sau sửa / sau người duyệt, log các thay đổi, hàng đợi người duyệt      | `submission/reports/`         |
+| **Kết quả calibration** (2 ngưỡng): sweep precision/recall                                       | `submission/calibration/`     |
+| Dataset đã xuất + `manifest.json` (truy vết)                                                     | `submission/export/clean_v1/` |
+| _(tùy chọn)_ **So sánh train**: raw vs clean (2 seed)                                            | `submission/results/`         |
+| **Một báo cáo duy nhất**: quyết định Release/Hold/Rework, phân việc, calibration, kết luận train | `submission/REPORT.md`        |
 
 ## Tài liệu
 
-| Bạn cần | Xem |
-|---|---|
-| Các pha làm việc, lệnh, mốc giờ | [GUIDE.md](GUIDE.md), [CHECKPOINTS.md](CHECKPOINTS.md) |
-| Quy tắc, dùng AI | [RULES.md](RULES.md) |
-| Chấm điểm | [RUBRIC.md](RUBRIC.md) |
-| Nộp bài | [SUBMISSION.md](SUBMISSION.md) |
-| Dữ liệu, 22 mã lỗi, nguồn ảnh | [data/README.md](data/README.md) |
-| Kiến trúc pipeline, vào/ra từng bước | [docs/PIPELINE.md](docs/PIPELINE.md) |
-| Calibration là gì, đọc bảng sweep | [docs/CALIBRATION.md](docs/CALIBRATION.md) |
-| Prompt AI viết script (4 ý), kiểm code AI | [docs/PROMPTING.md](docs/PROMPTING.md) |
-| Lọc box nhỏ trong CVAT (thưởng +2, tùy chọn) | [docs/CVAT_FILTER.md](docs/CVAT_FILTER.md) |
-| Cài đặt môi trường | [docs/SETUP.md](docs/SETUP.md) |
-| Train trên Colab | [docs/COLAB.md](docs/COLAB.md), [notebooks/day09_train_compare.ipynb](notebooks/day09_train_compare.ipynb) |
-| Nhãn dự án cho CVAT | [cvat/labels.json](cvat/labels.json) |
+| Bạn cần                                      | Xem                                                                                                        |
+| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Các pha làm việc, lệnh, mốc giờ              | [GUIDE.md](GUIDE.md), [CHECKPOINTS.md](CHECKPOINTS.md)                                                     |
+| Quy tắc, dùng AI                             | [RULES.md](RULES.md)                                                                                       |
+| Chấm điểm                                    | [RUBRIC.md](RUBRIC.md)                                                                                     |
+| Nộp bài                                      | [SUBMISSION.md](SUBMISSION.md)                                                                             |
+| Dữ liệu, 22 mã lỗi, nguồn ảnh                | [data/README.md](data/README.md)                                                                           |
+| Kiến trúc pipeline, vào/ra từng bước         | [docs/PIPELINE.md](docs/PIPELINE.md)                                                                       |
+| Calibration là gì, đọc bảng sweep            | [docs/CALIBRATION.md](docs/CALIBRATION.md)                                                                 |
+| Prompt AI viết script (4 ý), kiểm code AI    | [docs/PROMPTING.md](docs/PROMPTING.md)                                                                     |
+| Lọc box nhỏ trong CVAT (thưởng +2, tùy chọn) | [docs/CVAT_FILTER.md](docs/CVAT_FILTER.md)                                                                 |
+| Cài đặt môi trường                           | [docs/SETUP.md](docs/SETUP.md)                                                                             |
+| Train trên Colab                             | [docs/COLAB.md](docs/COLAB.md), [notebooks/day09_train_compare.ipynb](notebooks/day09_train_compare.ipynb) |
+| Nhãn dự án cho CVAT                          | [cvat/labels.json](cvat/labels.json)                                                                       |
 
 Slide tham khảo: **Day 09 — Công cụ kiểm tự động & Pipeline cơ bản**. Nền tảng: Day 07 (QC, Release/Hold/Rework).
 
