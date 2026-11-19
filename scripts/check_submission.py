@@ -13,6 +13,34 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 NO_TRAIN = "--no-train" in sys.argv
+try:  # Windows dùng code page 1252: in chữ Việt sẽ vỡ; ép UTF-8 khi stdout là pipeline
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+# Chạy bằng Python hệ thống không có pyyaml/pytest (requirements.txt chỉ cài vào .venv) sẽ ra lỗi khó hiểu.
+# Tự nhận diện môi trường và chuyển sang .venv của dự án (khi có) thay vì báo "pytest: (không có kết quả)".
+def _use_project_venv():
+    import importlib.util
+    if importlib.util.find_spec("pytest") is not None and importlib.util.find_spec("yaml") is not None:
+        return None
+    venv_py = ROOT / ".venv" / ("Scripts/python.exe" if sys.platform == "win32" else "bin/python")
+    if venv_py.exists():
+        return venv_py
+    return None
+
+_venv_py = _use_project_venv()
+if _venv_py is not None and Path(sys.executable).resolve() != _venv_py.resolve():
+    import os
+    print(f"(tự chuyển sang .venv của dự án: {_venv_py} — Python hệ thống thiếu pyyaml/pytest, requirements.txt chỉ cài vào .venv)", file=sys.stderr)
+    os.environ.setdefault("PYTHONUTF8", "1")
+    os.environ.setdefault("PYTHONIOENCODING", "utf-8")
+    os.execv(str(_venv_py), [str(_venv_py), str(Path(__file__).resolve()), *sys.argv[1:]])
+# Sau re-exec, pytest luôn chạy bằng cùng interpreter này; nếu vẫn không có pytest thì báo rõ ràng.
+import importlib.util
+if importlib.util.find_spec("pytest") is None:
+    print("LỖI: chưa cài yêu cầu (chạy: .venv/Scripts/python.exe -m pip install -r requirements.txt; xem docs/SETUP.md)", file=sys.stderr)
+    sys.exit(2)
 errs, warns = [], []
 
 
@@ -48,7 +76,11 @@ if r.returncode != 0:
 
 # 2b. file/giá trị KHÔNG được đổi (RULES.md) + không đọc đáp án
 def sha1(p):
-    return hashlib.sha1(Path(p).read_bytes().replace(b"\r\n", b"\n")).hexdigest()    # chuẩn hoá CRLF (Windows) -> LF
+    return hashlib.sha1(Path(p).read_bytes().replace(b"\r\n", b"\n")).hexdigest()    # chuẩn hoá CRLF (Windows) -> LF, khớp cả 2 cách tính sha trong run.py/train_compare.py (LF/CRLF)
+
+def cfg_sha1_variants(p):
+    raw = Path(p).read_bytes()
+    return {hashlib.sha1(raw).hexdigest(), hashlib.sha1(raw.replace(b"\r\n", b"\n")).hexdigest()}
 
 
 pin = ROOT / "scripts/_protected.json"
@@ -71,7 +103,7 @@ if pin.exists():
 else:
     warns.append("thiếu scripts/_protected.json: không kiểm được file đề/cấu hình cố định")
 prot = set(json.loads(pin.read_text(encoding="utf-8"))) if pin.exists() else set()
-for f in [p for p in (ROOT / "pipeline").rglob("*.py") if str(p.relative_to(ROOT)) not in prot]:
+for f in [p for p in (ROOT / "pipeline").rglob("*.py") if p.relative_to(ROOT).as_posix() not in prot]:
     t = f.read_text(encoding="utf-8")
     for bad in ("review_reference", "MANIFEST", "answer_key", "data/test", "data/calib", "gold_val"):
         if bad in t and not (f.name == "duplicates.py" and bad in ("data/test", "gold_val")):
@@ -86,7 +118,7 @@ if s.exists():
     v = json.loads(s.read_text(encoding="utf-8"))["verdict"]
     print("kết luận pipeline:", v["decision"], "-", "; ".join(v["reasons"]))
     d_all = json.loads(s.read_text(encoding="utf-8"))
-    if d_all.get("config_sha1") != sha1(ROOT / "configs/pipeline.yaml"):
+    if d_all.get("config_sha1") not in cfg_sha1_variants(ROOT / "configs/pipeline.yaml"):
         errs.append("08_summary.json được sinh bởi cấu hình khác với configs/pipeline.yaml hiện tại: chạy lại `make run`")
     rp = ROOT / "submission/REPORT.md"
     if rp.exists() and v["decision"].lower() not in rp.read_text(encoding="utf-8").lower():
